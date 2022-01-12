@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="play-pc" x="0px" y="0px" viewBox="0 0 432.59 432.59" style="enable-background:new 0 0 432.59 432.59;" xml:space="preserve">
+    <path style="fill:#E2E0D0;" d="M432.59,51.735v221.36H0V51.735c0-6.67,5.41-12.08,12.08-12.08h408.43 C427.18,39.655,432.59,45.065,432.59,51.735z M305.8,205.455v-93.83c0-11.37-9.22-20.58-20.59-20.58H147.38c-11.37,0-20.58,9.21-20.58,20.58v93.83c0,11.37,9.21,20.59,20.58,20.59h137.83C296.58,226.045,305.8,216.825,305.8,205.455z"/>
+    <path style="fill:#EAE8DC;" d="M432.59,273.095V43.729c-2.213-2.493-5.432-4.074-9.027-4.074H176.69L35.46,273.095H432.59z"/>
+    <polygon style="fill:#B6CCE0;" points="248.81,158.545 203.26,184.835 203.26,132.245 "/>
+    <path style="fill:#E59683;" d="M305.8,111.625v93.83c0,11.37-9.22,20.59-20.59,20.59H147.38c-11.37,0-20.58-9.22-20.58-20.59v-93.83c0-11.37,9.21-20.58,20.58-20.58h137.83C296.58,91.045,305.8,100.255,305.8,111.625z M203.26,184.835l45.55-26.29l-45.55-26.3 V184.835z"/>
+    <polygon style="fill:#808080;" points="254.79,314.045 263.85,382.935 168.75,382.935 177.81,314.045 "/>
+    <path style="fill:#999999;" d="M432.59,273.095v28.86c0,6.68-5.41,12.09-12.08,12.09H254.79h-76.98H12.08c-6.67,0-12.08-5.41-12.08-12.09v-28.86H432.59z"/>
+    <rect x="132.47" y="372.935" style="fill:#999999;" width="167.65" height="20"/>
+  </symbol>
+
+  <symbol id="play" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+  </symbol>
+
+  <symbol id="stop" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 001 1h4a1 1 0 001-1V8a1 1 0 00-1-1H8z" clip-rule="evenodd" />
+  </symbol>
+
+  <symbol id="ban" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+  </symbol>
+
+  <symbol id="refresh" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+    <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+  </symbol>
+
+</svg>

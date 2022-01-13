@@ -68,7 +68,7 @@
           :options="audioFileList"
           label="Chime Files"
           option-label="name"
-          option-value="file"
+          option-value="stream"
           emit-value
           map-options
           @update:model-value="fnUpdateChimeFile"
@@ -116,6 +116,8 @@ export default {
     const audioFileList = ref([])
     const chimeFile = ref(null)
 
+    const broadcast = ref(null)
+
     const playlist = ref([])
     const playId = ref(0)
 
@@ -134,6 +136,7 @@ export default {
         'http://localhost:3000/api/files/getSound'
       )
       audioFileList.value = r.data
+      console.log(r.data)
     }
 
     const fnUpdateChimeFile = () => {
@@ -154,13 +157,43 @@ export default {
       audioplayer.value.setSinkId(audioOutputDevice.value)
     }
 
-    const fnOnEnded = () => {
-      console.log('on ended')
+    const fnOnEnded = async () => {
+      console.log(playlist.value.length, playId.value)
+      if (playlist.value.length === playId.value + 1) {
+        console.log('end')
+        audioplayer.value.src = ''
+        playlist.value = []
+        playId.value = 0
+        try {
+          const r = await axios.post(
+            'http://localhost:3000/api/broadcast/onended',
+            { ...broadcast.value }
+          )
+        } catch (e) {
+          console.error(e)
+        }
+      } else {
+        playId.value += 1
+        audioplayer.value.src = playlist.value[playId.value]
+      }
     }
 
     const fnOnLoaded = () => {
       audioplayer.value.play()
       console.log('on loadedmetadata')
+    }
+
+    const play = () => {
+      if (playlist.value && playlist.value.length) {
+        audioplayer.value.src = playlist.value[playId.value]
+      }
+    }
+
+    const stop = () => {
+      audioplayer.value.pause()
+      audioplayer.value.src = ''
+      playlist.value = []
+      playId.value = 0
     }
 
     onMounted(async () => {
@@ -183,11 +216,21 @@ export default {
             }
             break
           case 'onair':
-            audioplayer.value.src = `http://localhost:3000/${args.file.stream}`
+            broadcast.value = args
+            if (args.startChime) {
+              console.log('startchime')
+              playlist.value.push(
+                `http://localhost:3000/files/${chimeFile.value}`
+              )
+            }
+            playlist.value.push(
+              `http://localhost:3000/files/${args.file.stream}`
+            )
+            // play
+            play()
             break
           case 'offair':
-            audioplayer.value.pause()
-            audioplayer.value.src = ''
+            stop()
             break
           default:
             console.log(args)

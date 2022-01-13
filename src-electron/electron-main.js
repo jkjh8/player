@@ -105,7 +105,6 @@ ipcMain.on('onRequest', async (event, args) => {
       break
     }
     case 'set_audiooutput':
-      console.log(args.value)
       await db.setup.update(
         { key: 'audiooutput' },
         { $set: { value: args.value } },

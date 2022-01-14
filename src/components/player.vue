@@ -88,7 +88,7 @@
       </div>
     </q-card-section>
   </q-card>
-  <div class="q-mt-lg">
+  <div v-show="false" class="q-mt-lg">
     <audio
       controls
       ref="audioplayer"

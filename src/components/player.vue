@@ -164,14 +164,19 @@ export default {
         audioplayer.value.src = ''
         playlist.value = []
         playId.value = 0
-        try {
-          const r = await axios.post(
-            'http://localhost:3000/api/broadcast/onended',
-            { ...broadcast.value }
-          )
-        } catch (e) {
-          console.error(e)
-        }
+
+        window.data.onRequest({
+          key: 'onEnded',
+          value: JSON.stringify(broadcast.value)
+        })
+        // try {
+        //   const r = await axios.post(
+        //     'http://localhost:3000/api/broadcast/onended',
+        //     { ...broadcast.value }
+        //   )
+        // } catch (e) {
+        //   console.error(e)
+        // }
       } else {
         playId.value += 1
         audioplayer.value.src = playlist.value[playId.value]

@@ -69,13 +69,14 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
+const multicastAddress = '230.185.192.12'
+const multicastPort = 12340
 // multicast
 const multicast = dgram.createSocket('udp4')
 multicast.bind(12300, () => {
   multicast.setBroadcast(true)
   multicast.setMulticastTTL(128)
-  multicast.addMembership('230.185.192.12')
+  multicast.addMembership(multicastAddress)
 })
 
 multicast.on('listening', () => {
@@ -95,13 +96,13 @@ ipcMain.on('onRequest', async (event, args) => {
         { $set: { value: args.value } },
         { upsert: true }
       )
+      multicastSend(args)
       break
     case 'get_chime': {
       const r = await db.setup.findOne({ key: 'chime' })
-      mainWindow.webContents.send('onResponse', {
-        key: 'chime',
-        value: r.value
-      })
+      mainWindow.webContents.send('onResponse', r)
+
+      multicastSend(r)
       break
     }
     case 'set_audiooutput':
@@ -110,13 +111,29 @@ ipcMain.on('onRequest', async (event, args) => {
         { $set: { value: args.value } },
         { upsert: true }
       )
+
+      multicastSend(args)
       break
     case 'get_audiooutput':
       const r = await db.setup.findOne({ key: 'audiooutput' })
-      mainWindow.webContents.send('onResponse', {
-        key: 'audiooutput',
-        value: r.value
+      mainWindow.webContents.send('onResponse', r)
+      multicastSend(r)
+      break
+
+    case 'onEnded':
+      console.log(args)
+      multicastSend({
+        key: args.key,
+        value: JSON.parse(args.value)
       })
       break
   }
 })
+
+const multicastSend = (data) => {
+  multicast.send(
+    JSON.stringify(data),
+    multicastPort,
+    multicastAddress
+  )
+}

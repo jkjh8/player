@@ -121,7 +121,7 @@ ipcMain.on('onRequest', async (event, args) => {
       break
 
     case 'onEnded':
-      console.log(args)
+      console.log('onended')
       multicastSend({
         key: args.key,
         value: JSON.parse(args.value)

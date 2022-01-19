@@ -189,6 +189,7 @@ export default {
     }
 
     const play = () => {
+      console.log('play')
       if (playlist.value && playlist.value.length) {
         audioplayer.value.src = playlist.value[playId.value]
       }
@@ -232,6 +233,20 @@ export default {
               `http://localhost:3000/files/${args.file.stream}`
             )
             // play
+            play()
+            break
+          case 'schedule':
+            broadcast.value = args
+            if (args.startChime) {
+              console.log('startchime')
+              playlist.value.push(
+                `http://localhost:3000/files/${chimeFile.value}`
+              )
+            }
+            playlist.value.push(
+              `http://localhost:3000/files/${args.file.stream}`
+            )
+            //play
             play()
             break
           case 'offair':
